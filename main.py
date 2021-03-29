@@ -45,8 +45,8 @@ def saveAudio(link):
             return True
         else:
             # video is longer than 15 minutes
-            print('The video is too long - please enter a track shorter than 15 minutes')
-            return False
+            msg = 'The video is too long - please enter a track shorter than 15 minutes'
+            return msg
     except:
         # if youtube link not recognised
         return False
@@ -137,8 +137,12 @@ def full_prediction(link):
         fail = "URL Invalid. Please enter the song\'s YouTube link:"
         return fail
 
-    # save and trim audio
-    saveAudio(link)
+    # save audio, sending the error back to the calling process if the clip
+    # is too long
+    b = saveAudio(link)
+    if b !=True:
+        return b
+
     clipAudio()
 
     # preprocess audio for classification

@@ -1,5 +1,7 @@
 import unittest
 import main
+import app
+import requests
 
 class TestMain(unittest.TestCase):
 
@@ -24,11 +26,32 @@ class TestMain(unittest.TestCase):
         # invalid link
         self.assertEqual(main.saveAudio('https://www.youtube.com/watch?v=Zbsadhfajb'), False)
         # valid video of over 10m
-        self.assertEqual(main.saveAudio('https://www.youtube.com/watch?v=God7bXyKkdA&t'), False)
+        self.assertNotEqual(main.saveAudio('https://www.youtube.com/watch?v=God7bXyKkdA&t'), True)
 
     # test saveMFCC
     def test_saveMFCC(self):
         self.assertEqual(main.saveMFCC(num_segments=5, hop_length=512, n_mfcc=13, n_fft=2048), True)
+
+class TestApp(unittest.TestCase):
+    def setUp(self):
+        app.app.testing = True
+        self.app = app.app.test_client()
+
+    def test_home(self):
+        # homepage is served
+        result = self.app.get('/')
+        assert b'Classifier' in result.data
+
+    def test_predict(self):
+        # get not allowed
+        result = self.app.get('/predict')
+        assert b'405' in result.data
+
+        # post request test
+        result = self.app.post('/predict', data={"link":"https://www.youtube.com/watch?v=ZbZSe6N_BXs"})
+        print('result is: {}'.format(result))
+        # TODO change this so it asserts correct functionality - 200?
+        assert b'400' not in result.data
 
 if __name__ == '__main__':
     unittest.main()

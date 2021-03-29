@@ -1,8 +1,7 @@
 from flask import Flask
-from flask_restful import Api, Resource
-from flask import render_template
-from main import *
-from urllib import parse as prs
+from flask_restful import Api, Resource, reqparse
+from flask import render_template, request
+from main import full_prediction
 
 app = Flask(__name__)
 api = Api(app)
@@ -12,18 +11,11 @@ api = Api(app)
 def home():
     return render_template('index.html')
 
-# TODO take input from form, extract final parameter and pass to a redirect
-
-# predict genre based on link parameter
-class predict(Resource):
-    def get(self, link):
-        link = prs.quote(link)
-        result = full_prediction(link)
-        return {"data": result}
-
-api.add_resource(predict, "/predict/<string:link>")
-
+@app.route('/predict', methods=['POST'])
+def predict():
+    link =request.form['link']
+    result = full_prediction(link)
+    return {"data": result}, 200
 
 if __name__ == "__main__":
     app.run(debug=True)
-    # https://www.youtube.com/watch?v=ZbZSe6N_BXs
