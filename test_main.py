@@ -53,5 +53,7 @@ class TestApp(unittest.TestCase):
         # TODO change this so it asserts correct functionality - 200?
         assert b'400' not in result.data
 
+        #TODO check that invalid link error message gets passed to frontend
+
 if __name__ == '__main__':
     unittest.main()
