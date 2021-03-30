@@ -1,19 +1,120 @@
- <!DOCTYPE html>
+<!--Frontend based on the amazing work of https://codepen.io/tommysmall92 and https://codepen.io/menelaosly-->
+<!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
 <title>Classifier</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
 <style>
+body
+  {
+  font-family: 'Josefin Sans', sans-serif;
+  color: #FFFFFF;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background: #fe8a71;
+}
+h1 {
+  display: block;
+  margin: 0 auto 25px auto;
+  text-align: center;
+  font-size: 2.2em;
+  font-weight: 600;
+  letter-spacing: -0.055em;
+}
+h2 {
+  display: block;
+  margin: 0 auto 60px auto;
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.25em;
+  letter-spacing: -0.015em;
+}
+form{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: all 1s;
+    width: 50px;
+    height: 50px;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid white;
+    padding: 5px;
+}
+.container {
+  position: relative;
+  margin: calc(75px + 2vh + 2vw) auto 0 auto;
+  padding: 0;
+  width: 100%;
+  max-width: 840px;
+}
+input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;;
+    height: 42.5px;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    display: none;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 20px;
+}
+
+.fa{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 42.5px;
+    height: 42.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    color: #07051a;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+
+form:hover{
+    width: 300px;
+    cursor: pointer;
+}
+
+form:hover input{
+    display: block;
+}
+
+form:hover .fa{
+    background: #07051a;
+    color: white;
+}
 </style>
 <script src=""></script>
-<body>
 
+<body>
+<div class="container">
+		<h1>Music Genre Classifier</h1>
+		<h2>Enter your song's YouTube link below!</h2>
+
+
+<!--input form-->
 <form action="/predict", method= "post">
-  <label for="link">Enter your song's YouTube link (max 15 mins): </label><br>
-  <input type="text" id="link" name="link" value="https://www.youtube.com/watch?v=ZbZSe6N_BXs"><br>
-  <input type="submit" value="Submit">
+  <label for="link"></label>
+  <input type="search" id="link" name="link" value="Link..."><br>
+  <i class="fa fa-search">
 </form>
+</div>
 
 </body>
 </html> 
