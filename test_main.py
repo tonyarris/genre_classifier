@@ -24,7 +24,7 @@ class TestMain(unittest.TestCase):
         # valid song of < 10m
         self.assertEqual(main.saveAudio('https://www.youtube.com/watch?v=ZbZSe6N_BXs'), True)
         # invalid link
-        self.assertEqual(main.saveAudio('https://www.youtube.com/watch?v=Zbsadhfajb'), False)
+        self.assertNotEqual(main.saveAudio('https://www.youtube.com/watch?v=Zbsadhfajb'), True)
         # valid video of over 10m
         self.assertNotEqual(main.saveAudio('https://www.youtube.com/watch?v=God7bXyKkdA&t'), True)
 
@@ -53,7 +53,15 @@ class TestApp(unittest.TestCase):
         # TODO change this so it asserts correct functionality - 200?
         assert b'400' not in result.data
 
-        #TODO check that invalid link error message gets passed to frontend
+        # invalid link error message gets passed to frontend
+        result = self.app.post('/predict', data={"link": "https://www.youtube.com/watch?v=Zb_BXs"})
+        print('result is: {}'.format(result))
+        assert b'recognised' in result.data
+
+        # too long video error gets passed to frontend
+        result = self.app.post('/predict', data={"link": "https://www.youtube.com/watch?v=FDMq9ie0ih0"})
+        print('result is: {}'.format(result))
+        assert b'15 minutes' in result.data
 
 if __name__ == '__main__':
     unittest.main()

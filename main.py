@@ -23,12 +23,14 @@ def validate(link):
     if regex.search(link):
 
         if validators.url(link) != True:
-            return False
+            msg = 'Please enter a valid YouTube URL - the song must be <15m long!'
+            return msg
         else:
-            print('URL valid.')
+            #print('URL valid.')
             return True
     else:
-        return False
+        msg = 'Please enter a valid YouTube URL - the song must be <15m long!'
+        return msg
 
 def saveAudio(link):
     try:
@@ -49,7 +51,9 @@ def saveAudio(link):
             return msg
     except:
         # if youtube link not recognised
-        return False
+        msg = 'The URL provided is not recognised as a YouTube link.'
+        return msg
+
 
 
 def clipAudio():
@@ -132,7 +136,7 @@ def full_prediction(link):
     valid = validate(link)
 
     # prompt for valid link until provided
-    if valid == False:
+    if valid != True:
         # get youtube link
         fail = "URL Invalid. Please enter the song\'s YouTube link:"
         return fail
@@ -143,7 +147,12 @@ def full_prediction(link):
     if b !=True:
         return b
 
-    clipAudio()
+    # catch errors in audio clipping process
+
+    c = clipAudio()
+    if c != True:
+        fail = "URL Invalid. Please enter the song\'s YouTube link:"
+        return fail
 
     # preprocess audio for classification
     saveMFCC()
