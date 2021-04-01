@@ -15,11 +15,13 @@ pip install -r requirements.txt
 ```
 
 ## Usage
-
+Run the server:
 ```python
-python main.py
+python app.py
 ```
-Enter a valid YouTube link to a musical track of length <15 minutes.
+Navigate to localhost:5000 on your browser.
+
+Enter a valid YouTube link to a musical track <15 minutes long.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
