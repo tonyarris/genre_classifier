@@ -1,4 +1,4 @@
-<!--Frontend based on the work of https://codepen.io/tommysmall92 and https://codepen.io/menelaosly-->
+<!--Frontend searchbar based on the work of https://codepen.io/menelaosly and https://fdossena.com/?-->
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 <style>
 body
   {
@@ -99,24 +100,78 @@ form:hover .fa{
     background: #07051a;
     color: white;
 }
+a.button2{
+display:inline-block;
+padding:0.5em 3em;
+border:0.16em solid #FFFFFF;
+margin:0 0.3em 0.3em 0;
+box-sizing: border-box;
+text-decoration:none;
+text-transform:uppercase;
+font-family:'Roboto',sans-serif;
+font-weight:400;
+color:#FFFFFF;
+text-align:center;
+transition: all 0.15s;
+}
+a.button2:hover{
+color:#DDDDDD;
+border-color:#DDDDDD;
+}
+a.button2:active{
+color:#BBBBBB;
+border-color:#BBBBBB;
+}
+@media all and (max-width:30em){
+a.button2{
+display:block;
+margin:0.4em auto;
+}
+}
 </style>
-<script src=""></script>
+<!--import jquery-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
 
 <body>
 <div class="container">
-		<h1>Music Genre Classifier</h1>
+		<h1 id="title">Music Genre Classifier</h1>
 		<h2>Enter your song's YouTube link below!</h2>
 
 <!--input form-->
-<form action="/predict", method= "post">
+<form id='linkForm'>
   <label for="link"></label>
-  <input type="search" id="link" name="link" value="Link..."><br>
+  <input type="search" id="link" name='link' value="Link..."><br>
 </form>
+    <div style="text-align: center">
+    <p><a href="#" class="button2" id="analyse">Analyse</a>
+    </p>
+    </div>
 </div>
 
-<!--TODO add loading icon/page-->
+<div class="container">
+    <h1 id=result>?</h1>
+</div>
 
-<!--TODO parse response and display on page-->
+<!--handle button submission-->
+<script type=text/javascript>
+  $(function() {
+    $('a#analyse').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/analyse', {
+        link: $('#link').val()
+      }, function(data) {
+        $("#result").text(data.result);
+      });
+      return false;
+    });
+  });
+</script>
+
+</script>
+
 
 </body>
 </html> 

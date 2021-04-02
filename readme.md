@@ -1,8 +1,12 @@
 # Genre classifier
 
-This is a musical genre classification tool that uses a convolutional neural network to predict the genre of a given song, provided by the user via a YouTube link. 
+This is a tool that uses a convolutional neural network to predict the genre of a given song, provided by the user via a YouTube link. 
 
-It is based on the brilliant work and tutorials of [Valerio Velardo](https://github.com/musikalkemist) and built with the [MARSAYAS](http://marsyas.info/downloads/datasets.html) dataset which consists of 1000 audio tracks each 30 seconds long. It contains 10 genres, each represented by 100 tracks. The tracks are all 22050Hz Mono 16-bit audio files in .wav format.
+It is based on the brilliant work of [Valerio Velardo](https://github.com/musikalkemist) and trained with the [MARSAYAS](http://marsyas.info/downloads/datasets.html) dataset which contains 10 different genres: Jazz, Rock, Disco, Pop, Country, Reggae, Hiphop, Blues, Metal and Classical.
+
+If you feed it a generic piece of music from a North American artist, it identifies the genre pretty well. However, the dataset could be more representative of other cultures, as the model classifies most Italian pop as Country. Plus, the scope of only ten possible genres means that most artists fall through the cracks. For example, it often classifies Red Hot Chili Peppers as hiphop rather than rock (or funk which is missing from the genre list).
+
+However, it was a tonne of fun to make and I learned a lot, which was the main objective!
 
 The project was built using Test Driven Development, and includes a suite of tests. The REST API was developed using Flask.
 
