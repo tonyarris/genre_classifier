@@ -4,7 +4,11 @@ This is a tool that uses a convolutional neural network to predict the genre of 
 
 It is based on the brilliant work of [Valerio Velardo](https://github.com/musikalkemist) and trained with the [MARSAYAS](http://marsyas.info/downloads/datasets.html) dataset which contains 10 different genres: Jazz, Rock, Disco, Pop, Country, Reggae, Hiphop, Blues, Metal and Classical.
 
-If you feed it a generic piece of music from a North American artist, it identifies the genre pretty well. However, the dataset could be more representative of other cultures, as the model classifies most Italian pop as Country. Plus, the scope of only ten possible genres means that most artists fall through the cracks. For example, it often classifies Red Hot Chili Peppers as hiphop rather than rock (or funk which is missing from the genre list).
+It was built in Python with Tensorflow/Keras and Librosa.
+
+If you feed it a generic piece of music from a North American artist, it identifies the genre pretty well. However, the dataset could be more representative of other cultures, as the model classifies most Italian pop as Country. 
+
+Plus, the scope of only ten possible genres means that most artists fall through the cracks. For example, it often classifies Red Hot Chili Peppers as hiphop rather than rock (or funk which is missing from the genre list).
 
 However, it was a tonne of fun to make and I learned a lot, which was the main objective!
 
