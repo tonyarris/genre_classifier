@@ -1,6 +1,7 @@
 # Genre classifier
+![](classifier_demo_chopin.gif)
 
-This is a tool that uses a convolutional neural network to predict the genre of a given song, provided by the user via a YouTube link. 
+This is a tool that uses a convolutional neural network to predict the genre of a given song, provided by the user via a YouTube link. In the demo above, the link is to [Chopin's 2nd Nocturne](https://www.youtube.com/watch?v=9E6b3swbnWg).
 
 It is based on the brilliant work of [Valerio Velardo](https://github.com/musikalkemist) and trained with the [MARSAYAS](http://marsyas.info/downloads/datasets.html) dataset which contains 10 different genres: Jazz, Rock, Disco, Pop, Country, Reggae, Hiphop, Blues, Metal and Classical.
 
