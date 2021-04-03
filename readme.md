@@ -7,9 +7,9 @@ It is based on the brilliant work of [Valerio Velardo](https://github.com/musika
 
 It was built in Python with Tensorflow/Keras and Librosa.
 
-If you feed it a generic piece of music from a mainstream western artist, it identifies the genre pretty well. However, the model doesn't generalise exceptionally well, for example classifying most Italian pop as Country. 
+If you feed it a generic piece of music from a mainstream western artist, it identifies the genre pretty well. However, the model doesn't generalise exceptionally well, for example classifying Italian pop songs as Country. 
 
-Also, the scope of only ten possible genres means that most artists fall through the cracks. For example, it often classifies Red Hot Chili Peppers as hiphop rather than rock (or funk which is absent from the genre list).
+Also, the scope of only ten possible genres means that most artists fall through the cracks. For example, it sometimes classifies Red Hot Chili Peppers as hiphop (perhaps due to Keidis' spoken performances) rather than rock (or funk which is absent from the genre list).
 
 However, it was a tonne of fun to make and I learned a lot, which was the main objective.
 
