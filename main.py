@@ -148,7 +148,6 @@ def full_prediction(link):
         return b
 
     # catch errors in audio clipping process
-
     c = clipAudio()
     if c != True:
         fail = "URL Invalid. Please enter the song\'s YouTube link:"
