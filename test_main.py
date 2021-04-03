@@ -1,7 +1,6 @@
 import unittest
 import main
 import app
-import requests
 
 class TestMain(unittest.TestCase):
 
@@ -43,23 +42,20 @@ class TestApp(unittest.TestCase):
         assert b'Classifier' in result.data
 
     def test_predict(self):
-        # get not allowed
-        result = self.app.get('/predict')
-        assert b'405' in result.data
 
-        # post request test
-        result = self.app.post('/predict', data={"link":"https://www.youtube.com/watch?v=ZbZSe6N_BXs"})
+        # get request test
+        result = self.app.get('/analyse?link=https://www.youtube.com/watch?v=ZbZSe6N_BXs')
         print('result is: {}'.format(result))
         # TODO change this so it asserts correct functionality - 200?
-        assert b'400' not in result.data
+        assert b'result' in result.data
 
         # invalid link error message gets passed to frontend
-        result = self.app.post('/predict', data={"link": "https://www.youtube.com/watch?v=Zb_BXs"})
+        result = self.app.get('/analyse?link=https://www.youtube.com/watch?v=Zb_BXs')
         print('result is: {}'.format(result))
         assert b'recognised' in result.data
 
         # too long video error gets passed to frontend
-        result = self.app.post('/predict', data={"link": "https://www.youtube.com/watch?v=FDMq9ie0ih0"})
+        result = self.app.get('/analyse?link=https://www.youtube.com/watch?v=FDMq9ie0ih0')
         print('result is: {}'.format(result))
         assert b'15 minutes' in result.data
 
