@@ -4,6 +4,11 @@ import tensorflow.keras as keras
 import json
 import random
 
+# The model is adapted from the work of Valerio Velardo @musikalkemist
+
+# At > 600MB, this json is not part of the repo, but if you would like
+# to tweak the model further, please get in touch and I will send it
+# to you via another channel
 DATASET_PATH = "./data/data.json"
 
 
